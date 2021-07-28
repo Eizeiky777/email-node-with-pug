@@ -1,0 +1,53 @@
+doctype html
+head
+  meta(charset='utf-8')
+  title A simple, clean, and responsive HTML invoice template
+  style
+      include css/style.css
+body(class='main-body')
+.invoice-box
+  table(cellpadding='0' cellspacing='0')
+    tr.top
+      td(colspan='2')
+        table
+          tr
+            td.title
+              img(src='https://www.sparksuite.com/images/logo.png' style='width: 100%; max-width: 300px')
+            td
+              | Invoice #: 123
+              br
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Created: January 1, 2015
+              br
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Due: February 1, 2015
+    tr.information
+      td(colspan='2')
+        table
+          tr
+            td
+              | Sparksuite, Inc.
+              br
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;12345 Sunny Road
+              br
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Sunnyville, CA 12345
+            td
+              | Acme Corp.
+              br
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;#{firstName}
+              br
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;john@example.com
+    tr.heading
+      td Payment Method
+      td Check #
+    tr.details
+      td Check
+      td 1000
+    tr.heading
+      td Item
+      td Price
+    each list in payment
+      tr.item
+        td #{list.item}
+        td #{list.price}  
+    tr.total
+      td
+      td= 'Total: $' + 385.00
