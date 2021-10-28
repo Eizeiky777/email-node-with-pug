@@ -7,7 +7,12 @@ const router = express.Router();
 const pug = require('pug');
 
 router.get("/", (req, res) => {
-    const invoice = [{firstName: 'Diana', lastName: 'One', payment: [{item: 'btc', price: 500}, {item: 'doge', price: 300}]}];
+    const invoice = [
+    {firstName: 'Diana', 
+    lastName: 'One', 
+    payment: [{item: 'btc', price: 500}, {item: 'doge', price: 300}]}
+    ];
+
     req.app.locals.userNames = ["Sean", "George", "Roger", "Timothy", "Pierce", "Daniel"];
     req.app.locals.userInvoice = [{item: 'btc', price: 1200}, {item:'doge', price:900}, {item:'xmr', price: 222}];
 
@@ -24,7 +29,14 @@ router.get("/", (req, res) => {
     res.render("homepage");
 });
 
-router.get("/send", (req, res) => {
+router.get("/checkout-pug", (req, res) => {
+    
+
+    // res.render("./greet/assets")
+    res.render("./greet/greeting");
+});
+
+router.post("/send", (req, res) => {
     const email = new Email({
         message: {
             from: 'hi@example.com'
@@ -36,14 +48,21 @@ router.get("/send", (req, res) => {
             ssl: false,
             tls: true,
             auth: {
-                user: 'c4e08c4b413c43', // your Mailtrap username
-                pass: 'b7c7d2c54bdfbe' //your Mailtrap password
+                user: process.env.USER,
+                pass: process.env.PASS
             }
         }
     });
 
     const people = [
-        {firstName: 'Diana', lastName: 'One', payment: [{item: 'btc', price: 500}, {item: 'doge', price: 300}] },
+        {
+            firstName: 'Diana', 
+            lastName: 'One', 
+            payment: [
+                {item: 'btc', price: 500}, 
+                {item: 'doge', price: 300}
+            ] 
+        },
     ];
 
     people.forEach((person) => {
@@ -57,6 +76,8 @@ router.get("/send", (req, res) => {
         .then(console.log)
         .catch(console.error);
     })
+
+    return res.send('successfully send email');
 })
 
 
