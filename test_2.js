@@ -14,8 +14,8 @@ async function main() {
     port: 2525,
     secure: false, // true for 465, false for other ports
     auth: {
-        user: 'c4e08c4b413c43', // your Mailtrap username
-        pass: 'b7c7d2c54bdfbe' //your Mailtrap password
+      user: process.env.USER,
+      pass: process.env.PASS
     },
   });
 
